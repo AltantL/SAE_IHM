@@ -65,19 +65,13 @@ public class ExempleLectureSenario {
             scannerLine.close();
         }
 
-
-        //return scenario;
-        for (int i=0; i<dico.size(); i++) {
-            while (scannerFile.hasNextLine()) {
-                if (dico.containsKey(membre.get(i))){
-                    System.out.println("pseaudo: " + dico.get(membre.get(i)) + " -> " + " ville: " + dico.get(membre.size()));
-                }
-                scannerFile.close();
+        for (int i=0; i<membre.size(); i++) {
+            if (dico.containsKey(membre.get(i))){
+                System.out.println("pseaudo: " + membre.get(i) + " -> " + " ville: " + dico.get(membre.get(i)));
             }
-
         }
-
     }
+
 
     public static void lectureScenarioVille (String scenrio) throws IOException {
 
