@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82df047e-da28-4345-b632-acdd31d2fa50" name="Changes" comment="" />
+    <list default="true" id="82df047e-da28-4345-b632-acdd31d2fa50" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/client/ClientExempleSenario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/ClientExempleSenario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/modele/ExempleLectureSenario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modele/ExempleLectureSenario.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -26,12 +29,12 @@
     &quot;assignee&quot;: &quot;AltantL&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/julienx-hub/SAE_java_IHM.git&quot;,
-    &quot;accountId&quot;: &quot;bced6bf8-bfcf-4433-9a6d-1a3378207e18&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/AltantL/SAE_IHM.git",
+    "accountId": "bced6bf8-bfcf-4433-9a6d-1a3378207e18"
   }
-}</component>
+}]]></component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -138,6 +141,7 @@
       <workItem from="1747045502063" duration="1894000" />
       <workItem from="1747897602720" duration="3046000" />
       <workItem from="1747900705148" duration="29000" />
+      <workItem from="1747905743963" duration="1880000" />
     </task>
     <servers />
   </component>

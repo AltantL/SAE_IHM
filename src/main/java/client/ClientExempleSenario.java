@@ -1,6 +1,6 @@
 package client;
 
-import vue.ExempleLectureSenario;
+import modele.ExempleLectureSenario;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,11 +12,15 @@ public class ClientExempleSenario {
 
     public static void main(String[] args) {
         liste.add("Psykokwak");
+        liste.add("Jungko");
+        liste.add("Méditikka");
+        liste.add("Spinda");
         try {
 //            ExempleLectureSenario.lectureScenario("scenario_0.txt");
 //            ExempleLectureSenario.lectureScenarioVille("scenario_0.txt");
 //            ExempleLectureSenario.lectureScenarioMembre();
-            ExempleLectureSenario.lectureScenarioMembreCible(liste);
+//            ExempleLectureSenario.lectureScenarioMembreCible(liste);
+            ExempleLectureSenario.regroupementParVille(liste);
         }
         catch (IOException ex) {
             System.out.println(ex.getMessage());
