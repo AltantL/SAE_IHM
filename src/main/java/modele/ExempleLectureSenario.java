@@ -45,7 +45,7 @@ public class ExempleLectureSenario {
         //return scenario;
     }
 
-    public static void lectureScenarioMembreCible (ArrayList<String> membre) throws IOException {
+    public static Map lectureScenarioMembreCible (ArrayList<String> membre) throws IOException {
 
         Map<String, String> dico = new HashMap<>();
 
@@ -68,8 +68,23 @@ public class ExempleLectureSenario {
                 System.out.println("pseaudo: " + membre.get(i) + " -> " + " ville: " + dico.get(membre.get(i)));
             }
         }
+        return dico;
     }
 
+    public static void regroupementParVille(ArrayList<String> membre) throws IOException {
+        Map dico = lectureScenarioMembreCible(membre);
+
+        Map<String ,ArrayList<String>> regroupement = new HashMap<>();
+
+        for (int i=0; i<membre.size(); i++) {
+            if (dico.get(membre.get(i))!=null) {
+                String ville = dico.get(membre.get(i)).toString();
+                regroupement.put(ville, new ArrayList<>());
+            }
+            regroupement.get(dico.get(membre.get(i))).add(membre.get(i));
+        }
+        System.out.println(regroupement);
+    }
 
     public static void lectureScenarioVille (String scenrio) throws IOException {
 
@@ -119,11 +134,13 @@ public class ExempleLectureSenario {
                 distances.add(scannerLine.nextInt());
             }
             villesDistances.put(ville, distances);
+            System.out.println("Ville: " + ville + " -> Distances: " + villesDistances.get(ville) + listeVille);
             scannerLine.close();
         }
         scannerFile.close();
-        for (String ville : villesDistances.keySet()) {
-            System.out.println("Ville: " + ville + " -> Distances: " + villesDistances.get(ville) + listeVille);
-        }
+
     }
+
+
+
 }
