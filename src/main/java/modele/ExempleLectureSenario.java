@@ -1,6 +1,4 @@
-package vue;
-
-import modele.Scenario;
+package modele;
 
 import java.io.File;
 import java.io.IOException;
@@ -104,5 +102,28 @@ public class ExempleLectureSenario {
         lectureScenarioMembreCible(achteurm);
         lectureScenarioMembreCible(vendeurm);
 
+    }
+    public static void lectureDistance(String scenario) throws IOException {
+        File file = new File("ressources" + File.separator + scenario );
+        Scanner scannerFile = new Scanner(file);
+        Scanner scannerLine;
+        HashMap<String, ArrayList<Integer>> villesDistances = new HashMap<>();
+        ArrayList<String> listeVille = new ArrayList<>();
+        while (scannerFile.hasNextLine()) {
+            String line = scannerFile.nextLine();
+            scannerLine = new Scanner(line);
+            String ville = scannerLine.next();
+            listeVille.add(ville);
+            ArrayList<Integer> distances = new ArrayList<>();
+            while (scannerLine.hasNextInt()) {
+                distances.add(scannerLine.nextInt());
+            }
+            villesDistances.put(ville, distances);
+            scannerLine.close();
+        }
+        scannerFile.close();
+        for (String ville : villesDistances.keySet()) {
+            System.out.println("Ville: " + ville + " -> Distances: " + villesDistances.get(ville) + listeVille);
+        }
     }
 }
