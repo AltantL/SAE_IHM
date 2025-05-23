@@ -86,7 +86,7 @@ public class ExempleLectureSenario {
         System.out.println(regroupement);
     }
 
-    public static void lectureScenarioVille (String scenrio) throws IOException {
+    public static List[] lectureScenarioVille (String scenrio) throws IOException {
 
 
         File file = new File("scenarios" + File.separator + scenrio);
@@ -111,11 +111,14 @@ public class ExempleLectureSenario {
 
         scannerFile.close();
         //return scenario;
-        System.out.println(vendeurm);
-        System.out.println(achteurm);
+        //System.out.println(vendeurm);
+        //System.out.println(achteurm);
 
         lectureScenarioMembreCible(achteurm);
         lectureScenarioMembreCible(vendeurm);
+
+
+        return new List[] {achteurm, vendeurm};
 
     }
     public static void lectureDistance(String scenario) throws IOException {
@@ -138,6 +141,14 @@ public class ExempleLectureSenario {
             scannerLine.close();
         }
         scannerFile.close();
+
+    }
+
+    public void regrouperParVilleEtDistance(String scenario) throws IOException {
+        List[] achven = lectureScenarioVille(scenario);
+
+        List achteur = achven[0];
+        List vendeur = achven[1];
 
     }
 
