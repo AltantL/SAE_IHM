@@ -77,8 +77,8 @@ public class ExempleLectureSenario {
         Map<String ,ArrayList<String>> regroupement = new HashMap<>();
 
         for (int i=0; i<membre.size(); i++) {
-            if (dico.get(membre.get(i))!=null) {
-                String ville = dico.get(membre.get(i)).toString();
+            String ville = dico.get(membre.get(i)).toString();
+            if (!regroupement.containsKey(ville)) {
                 regroupement.put(ville, new ArrayList<>());
             }
             regroupement.get(dico.get(membre.get(i))).add(membre.get(i));
