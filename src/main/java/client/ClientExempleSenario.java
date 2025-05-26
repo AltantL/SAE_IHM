@@ -17,7 +17,7 @@ public class ClientExempleSenario {
         liste.add("Spinda");
         try {
 //            LectureScenario.lectureScenario("scenario_0.txt");
-//            LectureScenario.lectureScenarioVille("scenario_0.txt");
+            LectureScenario.lectureScenarioVille("scenario_0.txt");
 //            LectureScenario.lectureScenarioMembre();
 //            LectureScenario.lectureScenarioMembreCible(liste);
             LectureScenario.regroupementParVille(liste);
