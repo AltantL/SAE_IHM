@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
-public class ExempleLectureScenario {
+public class LectureScenario {
+
+
     public static void lectureScenario (String scenrio) throws IOException {
 
         File file = new File("scenarios" + File.separator + scenrio);

@@ -1,6 +1,6 @@
 package client;
 
-import modele.ExempleLectureSenario;
+import modele.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,11 +16,11 @@ public class ClientExempleSenario {
         liste.add("Méditikka");
         liste.add("Spinda");
         try {
-//            ExempleLectureSenario.lectureScenario("scenario_0.txt");
-//            ExempleLectureSenario.lectureScenarioVille("scenario_0.txt");
-//            ExempleLectureSenario.lectureScenarioMembre();
-//            ExempleLectureSenario.lectureScenarioMembreCible(liste);
-            ExempleLectureSenario.regroupementParVille(liste);
+//            LectureScenario.lectureScenario("scenario_0.txt");
+//            LectureScenario.lectureScenarioVille("scenario_0.txt");
+//            LectureScenario.lectureScenarioMembre();
+//            LectureScenario.lectureScenarioMembreCible(liste);
+            LectureScenario.regroupementParVille(liste);
         }
         catch (IOException ex) {
             System.out.println(ex.getMessage());
