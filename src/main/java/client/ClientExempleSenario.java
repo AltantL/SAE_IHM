@@ -20,7 +20,7 @@ public class ClientExempleSenario {
             LectureScenario.lectureScenarioVille("scenario_0.txt");
 //            LectureScenario.lectureScenarioMembre();
 //            LectureScenario.lectureScenarioMembreCible(liste);
-            LectureScenario.regroupementParVille(liste);
+            //LectureScenario.regroupementParVille(liste);
         }
         catch (IOException ex) {
             System.out.println(ex.getMessage());
