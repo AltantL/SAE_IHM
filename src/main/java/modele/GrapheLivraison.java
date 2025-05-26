@@ -10,6 +10,7 @@ import java.util.Map;
 
 import static modele.LectureScenario.*;
 
+
 public class GrapheLivraison {
     public static void grapheLivraison(String scenario) throws IOException {
         List[] achven = lectureScenarioVille(scenario);
