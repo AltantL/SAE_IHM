@@ -1,5 +1,7 @@
 package modele;
 
+import org.w3c.dom.ls.LSOutput;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
@@ -121,8 +123,8 @@ public class ExempleLectureSenario {
         return new List[] {achteurm, vendeurm};
 
     }
-    public static void lectureDistance(String scenario) throws IOException {
-        File file = new File("ressources" + File.separator + scenario );
+    public static void lectureDistance() throws IOException {
+        File file = new File("ressources" + File.separator + "distances.txt");
         Scanner scannerFile = new Scanner(file);
         Scanner scannerLine;
         HashMap<String, ArrayList<Integer>> villesDistances = new HashMap<>();
@@ -144,12 +146,25 @@ public class ExempleLectureSenario {
 
     }
 
-    public void regrouperParVilleEtDistance(String scenario) throws IOException {
+    public static void regrouperParVilleEtDistance(String scenario) throws IOException {
         List[] achven = lectureScenarioVille(scenario);
 
-        List achteur = achven[0];
-        List vendeur = achven[1];
+        List achteurL = achven[0];
+        List vendeurL = achven[1];
 
+        ArrayList<String> achteur = new ArrayList<>();
+        ArrayList<String> vendeur = new ArrayList<>();
+
+        for (int i = 0; i < achteurL.size(); i++) {
+            achteur.add(achteurL.get(i).toString());
+            vendeur.add(vendeurL.get(i).toString());
+        }
+
+        System.out.println(achteur);
+        System.out.println(vendeur);
+
+        regroupementParVille(achteur);
+        regroupementParVille(vendeur);
     }
 
 
