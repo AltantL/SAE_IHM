@@ -113,11 +113,9 @@ public class LectureScenario {
 
         scannerFile.close();
         //return scenario;
-        //System.out.println(vendeurm);
-        //System.out.println(achteurm);
+        regroupementParVille(achteurm);
+        regroupementParVille(vendeurm);
 
-        lectureScenarioMembreCible(achteurm);
-        lectureScenarioMembreCible(vendeurm);
 
 
         return new List[] {achteurm, vendeurm};
