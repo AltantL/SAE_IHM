@@ -73,7 +73,7 @@ public class LectureScenario {
         return dico;
     }
 
-    public static void regroupementParVille(ArrayList<String> membre) throws IOException {
+    public static Map<String, ArrayList<String>> regroupementParVille(ArrayList<String> membre) throws IOException {
         Map dico = lectureScenarioMembreCible(membre);
 
         Map<String ,ArrayList<String>> regroupement = new HashMap<>();
@@ -86,6 +86,7 @@ public class LectureScenario {
             regroupement.get(dico.get(membre.get(i))).add(membre.get(i));
         }
         System.out.println(regroupement);
+        return regroupement;
     }
 
     public static List[] lectureScenarioVille (String scenrio) throws IOException {
