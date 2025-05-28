@@ -11,12 +11,12 @@ public class Appli extends Application {
     public void start(Stage stage) {
 
         stage.setTitle("APPLI");
-        GridPaneSelectionAlgo root = new GridPaneSelectionAlgo();
+        HBoxRoot root = new HBoxRoot();
         Scene scene = new Scene(root,900, 400);
-        //File [] premiercss = new File("css").listFiles();
-        //for(File fichier : premiercss){
-        //    scene.getStylesheets().add(fichier.toURI().toString());
-        // }
+        File [] css = new File("css").listFiles();
+        for(File fichier : css){
+            scene.getStylesheets().add(fichier.toURI().toString());
+         }
         stage.setScene(scene);
         stage.show();
     }
