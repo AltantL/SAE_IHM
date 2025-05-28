@@ -20,7 +20,7 @@ public class LectureScenario {
             String vendeur = scannerLine.next();
             scannerLine.next(); // "->"
             String achteur = scannerLine.next();
-            System.out.println("vendeur: " + vendeur + " -> " + " achteur: " + achteur);
+            //System.out.println("vendeur: " + vendeur + " -> " + " achteur: " + achteur);
             scannerLine.close();
         }
         scannerFile.close();
@@ -40,7 +40,7 @@ public class LectureScenario {
             scannerLine = new Scanner(Line);
             String pseaudo = scannerLine.next();
             String ville = scannerLine.next();
-            System.out.println("pseaudo: " + pseaudo + " -> " + " ville: " + ville);
+            //System.out.println("pseaudo: " + pseaudo + " -> " + " ville: " + ville);
             scannerLine.close();
         }
         scannerFile.close();
@@ -50,6 +50,7 @@ public class LectureScenario {
     public static Map lectureScenarioMembreCible (ArrayList<String> membre) throws IOException {
 
         Map<String, String> dico = new HashMap<>();
+        Map<String, String> dico2 = new HashMap<>();
 
         File file = new File("ressources" + File.separator + "membres_APPLI.txt");
 
@@ -67,10 +68,11 @@ public class LectureScenario {
 
         for (int i=0; i<membre.size(); i++) {
             if (dico.containsKey(membre.get(i))){
-                System.out.println("pseaudo: " + membre.get(i) + " -> " + " ville: " + dico.get(membre.get(i)));
+                dico2.put(membre.get(i), dico.get(membre.get(i)));
+                //System.out.println("pseaudo: " + membre.get(i) + " -> " + " ville: " + dico.get(membre.get(i)));
             }
         }
-        return dico;
+        return dico2;
     }
 
     public static Map<String, ArrayList<String>> regroupementParVille(ArrayList<String> membre) throws IOException {
@@ -85,7 +87,7 @@ public class LectureScenario {
             }
             regroupement.get(dico.get(membre.get(i))).add(membre.get(i));
         }
-        System.out.println(regroupement);
+        //System.out.println(regroupement);
         return regroupement;
     }
 
@@ -108,7 +110,7 @@ public class LectureScenario {
             scannerLine.next(); // "->"
             String achteur = scannerLine.next();
             achteurm.add(achteur);
-            System.out.println("vendeur: " + vendeur + " -> " + " achteur: " + achteur);
+            //System.out.println("vendeur: " + vendeur + " -> " + " achteur: " + achteur);
             scannerLine.close();
         }
 
@@ -158,7 +160,7 @@ public class LectureScenario {
         }
     }
 
-    public static void regrouperParVilleEtDistance(String scenario) throws IOException {
+    public static void regrouperParVille(String scenario) throws IOException {
         List[] achven = lectureScenarioVille(scenario);
 
         List achteurL = achven[0];
@@ -175,8 +177,14 @@ public class LectureScenario {
         System.out.println(achteur);
         System.out.println(vendeur);
 
-        regroupementParVille(achteur);
-        regroupementParVille(vendeur);
+        Map<String, ArrayList<String>> ach;
+        Map<String, ArrayList<String>> ven;
+
+        ach = regroupementParVille(achteur);
+        ven = regroupementParVille(vendeur);
+
+        System.out.println(ach);
+        System.out.println(ven);
     }
 
 }
