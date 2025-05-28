@@ -21,6 +21,7 @@ public class ClientExempleSenario {
 //            LectureScenario.lectureScenarioMembre();
 //            LectureScenario.lectureScenarioMembreCible(liste);
             //LectureScenario.regroupementParVille(liste);
+            GrapheLivraison.grapheLivraison("scenario_0.txt");
         }
         catch (IOException ex) {
             System.out.println(ex.getMessage());
