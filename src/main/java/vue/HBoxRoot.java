@@ -6,15 +6,20 @@ import javafx.scene.layout.HBox;
 public class HBoxRoot extends HBox {
 
     private static GridPaneSelectionAlgo gridPaneSelectionAlgo;
+    private static Resultat resultat;
 
     public HBoxRoot() {
 
-        gridPaneSelectionAlgo = new GridPaneSelectionAlgo();
+        super(30);
 
-        this.getChildren().add(gridPaneSelectionAlgo);
+        gridPaneSelectionAlgo = new GridPaneSelectionAlgo();
+        resultat = new Resultat();
+
+        this.getChildren().addAll(gridPaneSelectionAlgo, resultat);
     }
 
     public static GridPaneSelectionAlgo getGridPaneSelectionAlgo() {
         return gridPaneSelectionAlgo;
     }
+    public static Resultat getResultat() {return resultat;}
 }
