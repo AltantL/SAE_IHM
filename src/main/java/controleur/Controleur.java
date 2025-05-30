@@ -1,6 +1,5 @@
 package controleur;
 
-
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.control.*;
@@ -10,6 +9,9 @@ import vue.GridPaneSelectionAlgo;
 import vue.HBoxRoot;
 import vue.Resultat;
 
+import java.io.IOException;
+
+import static constantes.ConstanteIHM.SCENARIOS;
 
 public class Controleur implements EventHandler{
 
@@ -21,15 +23,27 @@ public class Controleur implements EventHandler{
         Resultat resultat = HBoxRoot.getResultat();
 
         //la source de event est le bouton "Enregistrer" du formulaire de selection
-        if (event.getSource() instanceof ToggleButton) {
+        if (event.getSource() instanceof Button){
 
-            //
+            System.out.println("1");
+
+            ComboBox numScenario = selectionAlgo.comboScenarios;
+
+            int Senario = numScenario.getSelectionModel().getSelectedIndex();
+
+            String testSenario = SCENARIOS[Senario];
+
+            try {
+                resultat.affichageResultat(testSenario);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
 
         }
 
         //la source de event est le bouton "Enregistrer" du formulaire de réservatuion
 
-        if (event.getSource() instanceof Button){
+//        if (event.getSource() instanceof Button){
 //
 //            Date date = reservationPane.dateReserve;
 //
@@ -66,7 +80,7 @@ public class Controleur implements EventHandler{
 //
 //            affichagePlanning.setNumSemaineSelectionnee(date);
 
-        }
+//        }
 //        if (event.getSource() instanceof .......){
 //            //
 //        }

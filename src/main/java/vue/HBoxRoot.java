@@ -1,12 +1,13 @@
 package vue;
 
-import javafx.scene.Scene;
+import controleur.Controleur;
 import javafx.scene.layout.HBox;
 
 public class HBoxRoot extends HBox {
 
     private static GridPaneSelectionAlgo gridPaneSelectionAlgo;
     private static Resultat resultat;
+    private static Controleur controleur;
 
     public HBoxRoot() {
 
@@ -14,6 +15,7 @@ public class HBoxRoot extends HBox {
 
         gridPaneSelectionAlgo = new GridPaneSelectionAlgo();
         resultat = new Resultat();
+        controleur = new Controleur();
 
         this.getChildren().addAll(gridPaneSelectionAlgo, resultat);
     }
@@ -22,4 +24,5 @@ public class HBoxRoot extends HBox {
         return gridPaneSelectionAlgo;
     }
     public static Resultat getResultat() {return resultat;}
+    public static Controleur getControleur() {return controleur;}
 }

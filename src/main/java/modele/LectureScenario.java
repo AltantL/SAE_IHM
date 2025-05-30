@@ -160,7 +160,7 @@ public class LectureScenario {
         }
     }
 
-    public static void regrouperParVille(String scenario) throws IOException {
+    public static ArrayList<Map> regrouperParVille(String scenario) throws IOException {
         List[] achven = lectureScenarioVille(scenario);
 
         List achteurL = achven[0];
@@ -185,6 +185,12 @@ public class LectureScenario {
 
         System.out.println(ach);
         System.out.println(ven);
+
+        ArrayList<Map> lesDeux = new ArrayList<>();
+        lesDeux.add(ach);
+        lesDeux.add(ven);
+
+        return lesDeux;
     }
 
 }

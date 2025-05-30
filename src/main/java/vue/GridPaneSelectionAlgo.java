@@ -8,7 +8,7 @@ import javafx.scene.layout.GridPane;
 
 public class GridPaneSelectionAlgo extends GridPane implements ConstanteIHM {
 
-    ComboBox comboScenarios;
+    public ComboBox comboScenarios;
 
     public GridPaneSelectionAlgo() {
 
@@ -27,16 +27,9 @@ public class GridPaneSelectionAlgo extends GridPane implements ConstanteIHM {
         comboScenarios = peupleComboBox(SCENARIOS);
 
         Button boutonAnnuler = new Button("Annuler");
-
-        boutonAnnuler.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                radioButton1.setSelected(true);
-                comboScenarios.setValue(SCENARIOS[0]);
-            }
-        });
-
         Button bouttonValider = new Button("Valider");
+
+        bouttonValider.setOnAction(HBoxRoot.getControleur());
 
         this.add(labelTitre, 0, 0);
 
@@ -49,7 +42,13 @@ public class GridPaneSelectionAlgo extends GridPane implements ConstanteIHM {
         this.add(boutonAnnuler, 0, 5);
         this.add(bouttonValider, 1, 5);
 
-
+        boutonAnnuler.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                radioButton1.setSelected(true);
+                comboScenarios.setValue(SCENARIOS[0]);
+            }
+        });
     }
 
     private ComboBox<String> peupleComboBox(String[] strings) {
