@@ -11,36 +11,50 @@ import javax.swing.*;
 public class Accueil extends GridPane {
     public Accueil() {
 
+        AnchorPane content = new AnchorPane();
+
         ImageView background = new ImageView(new Image("file:image/echangePokemon.jpg"));
-        background.setFitWidth(800);
-        background.setFitHeight(600);
+        background.setFitWidth(658);
+        background.setFitHeight(306);
         background.setPreserveRatio(false);
 
         Label labelTitreAccueil = new Label("Accueil de L'APPLI");
-        Label espace = new Label(" ");
-        Label espace2 = new Label(" ");
-        Label espace3 = new Label(" ");
+        labelTitreAccueil.setStyle("-fx-text-fill: white;");
 
-        Button boutonCreerSenario = new Button("Creer Senario");
+        Button boutonCreerSenario = new Button("Créer Senario");
+        boutonCreerSenario.setOnAction(e -> {});
+
         Button boutonModifierSenario = new Button("Modifier Senario");
+        boutonModifierSenario.setOnAction(e -> {});
+
         Button boutonUtiliserSenario = new Button("Utiliser Senario");
+        boutonUtiliserSenario.setOnAction(e -> {});
+
         Button boutonCredit =  new Button("Credit");
+        boutonCredit.setOnAction(e -> {});
+
+
+        AnchorPane.setTopAnchor(labelTitreAccueil, 112.6);
+        AnchorPane.setLeftAnchor(labelTitreAccueil,280.0);
+
+        AnchorPane.setTopAnchor(boutonCreerSenario, 180.0);
+        AnchorPane.setLeftAnchor(boutonCreerSenario, 112.6);
+
+        AnchorPane.setTopAnchor(boutonModifierSenario, 180.0);
+        AnchorPane.setLeftAnchor(boutonModifierSenario, 290.0);
+
+        AnchorPane.setTopAnchor(boutonUtiliserSenario, 180.0);
+        AnchorPane.setRightAnchor(boutonUtiliserSenario, 112.6);
+
+        AnchorPane.setBottomAnchor(boutonCredit, 10.0);
+        AnchorPane.setLeftAnchor(boutonCredit, 10.0);
+
+        content.getChildren().addAll(labelTitreAccueil, boutonCreerSenario, boutonModifierSenario, boutonUtiliserSenario, boutonCredit);
 
         StackPane root = new StackPane();
-        root.getChildren().add(background);
+        root.getChildren().addAll(background,content);
 
-        this.getChildren().addAll(root,labelTitreAccueil,boutonCreerSenario,boutonModifierSenario,boutonUtiliserSenario,boutonCredit);
-
-//        this.add(labelTitreAccueil, 1, 1 ,3,1);
-//        this.add(espace, 2, 2 ,3,1);
-//        this.add(boutonCreerSenario, 0,3);
-//        this.add(espace2, 1,3);
-//        this.add(boutonModifierSenario, 2,3);
-//        this.add(espace3, 3,4);
-//        this.add(boutonUtiliserSenario, 4,3);
-//        this.add(boutonCredit, 2,5);
-
-
+        this.getChildren().add(root);
 
     }
 }
