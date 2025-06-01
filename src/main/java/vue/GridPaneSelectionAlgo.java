@@ -6,6 +6,8 @@ import javafx.event.EventHandler;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 
+import javax.swing.*;
+
 public class GridPaneSelectionAlgo extends GridPane implements ConstanteIHM {
 
     public ComboBox comboScenarios;

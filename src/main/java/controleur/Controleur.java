@@ -3,15 +3,13 @@ package controleur;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.control.*;
-import javafx.scene.layout.GridPane;
-import modele.*;
 import vue.GridPaneSelectionAlgo;
 import vue.HBoxRoot;
 import vue.Resultat;
 
 import java.io.IOException;
 
-import static constantes.ConstanteIHM.SCENARIOS;
+import static constantes.ConstanteIHM.*;
 
 public class Controleur implements EventHandler{
 
@@ -79,7 +77,7 @@ public class Controleur implements EventHandler{
 //            }
 //
 //            affichagePlanning.setNumSemaineSelectionnee(date);
-
+//
 //        }
 //        if (event.getSource() instanceof .......){
 //            //

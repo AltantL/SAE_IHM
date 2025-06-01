@@ -34,7 +34,6 @@ public class LectureScenario {
         Scanner scannerFile = new Scanner(file);
         Scanner scannerLine;
 
-
         while(scannerFile.hasNextLine()) {
             String Line = scannerFile.nextLine();
             scannerLine = new Scanner(Line);
@@ -92,7 +91,6 @@ public class LectureScenario {
     }
 
     public static List[] lectureScenarioVille (String scenrio) throws IOException {
-
 
         File file = new File("scenarios" + File.separator + scenrio);
 
