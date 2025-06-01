@@ -12,7 +12,8 @@ public class Appli extends Application {
 
         stage.setTitle("APPLI");
         HBoxRoot root = new HBoxRoot();
-        Scene scene = new Scene(root,900, 400);
+        Accueil accueil = new Accueil();
+        Scene scene = new Scene(root,690, 338);
         File [] css = new File("css").listFiles();
         for(File fichier : css){
             scene.getStylesheets().add(fichier.toURI().toString());

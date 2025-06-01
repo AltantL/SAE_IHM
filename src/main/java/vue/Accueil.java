@@ -57,4 +57,5 @@ public class Accueil extends GridPane {
         this.getChildren().add(root);
 
     }
+
 }
