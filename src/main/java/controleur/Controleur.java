@@ -23,8 +23,6 @@ public class Controleur implements EventHandler{
         //la source de event est le bouton "Enregistrer" du formulaire de selection
         if (event.getSource() instanceof Button){
 
-            System.out.println("1");
-
             ComboBox numScenario = selectionAlgo.comboScenarios;
 
             int Senario = numScenario.getSelectionModel().getSelectedIndex();
