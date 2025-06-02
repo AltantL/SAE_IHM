@@ -1,12 +1,17 @@
 package vue;
 
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 
-import javax.swing.*;
+import java.util.List;
+
 
 public class Accueil extends GridPane {
     public Accueil() {
@@ -22,16 +27,16 @@ public class Accueil extends GridPane {
         labelTitreAccueil.setStyle("-fx-text-fill: white;");
 
         Button boutonCreerSenario = new Button("Créer Senario");
-        boutonCreerSenario.setOnAction(e -> {});
+        boutonCreerSenario.setOnAction(e -> Accueil.this.getChildren().add(new ScrollPane(new GridPaneCreationScenario())));
 
         Button boutonModifierSenario = new Button("Modifier Senario");
-        boutonModifierSenario.setOnAction(e -> {});
+        boutonModifierSenario.setOnAction(e -> Accueil.this.getChildren().add(new ScrollPane(new GridPaneCreationScenario())));
 
         Button boutonUtiliserSenario = new Button("Utiliser Senario");
-        boutonUtiliserSenario.setOnAction(e -> {});
+        boutonUtiliserSenario.setOnAction(e -> Accueil.this.getChildren().add(new ScrollPane(new GridPaneCreationScenario())));
 
         Button boutonCredit =  new Button("Credit");
-        boutonCredit.setOnAction(e -> {});
+        boutonCredit.setOnAction(e -> onBouttonCredit());
 
 
         AnchorPane.setTopAnchor(labelTitreAccueil, 112.6);
@@ -56,6 +61,22 @@ public class Accueil extends GridPane {
 
         this.getChildren().add(root);
 
+    }
+
+    private void onBouttonCredit() {
+        GridPane gridPane = new GridPane();
+
+        Label nom1 = new Label("Antoine LAPLUYE");
+        Label nom2 = new Label("Julien MATHIAS");
+
+        Button boutonRetour = new Button("Retour");
+        boutonRetour.setOnAction(e -> this.getChildren().remove(this.getChildren().size()-1));
+
+        gridPane.add(nom1, 0, 0);
+        gridPane.add(nom2, 0, 1);
+        gridPane.add(boutonRetour, 0, 2);
+
+        this.getChildren().add(new ScrollPane(gridPane));
     }
 
 }
