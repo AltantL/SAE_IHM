@@ -27,23 +27,27 @@ public class LectureScenario {
         //return scenario;
     }
 
-    public static void lectureScenarioMembre () throws IOException {
+    public static ArrayList lectureScenarioMembre () throws IOException {
 
         File file = new File("ressources" + File.separator + "membres_APPLI.txt");
 
         Scanner scannerFile = new Scanner(file);
         Scanner scannerLine;
 
+        ArrayList<String> listTous = new ArrayList<>();
+
         while(scannerFile.hasNextLine()) {
             String Line = scannerFile.nextLine();
             scannerLine = new Scanner(Line);
             String pseaudo = scannerLine.next();
+            listTous.add(pseaudo);
             String ville = scannerLine.next();
             //System.out.println("pseaudo: " + pseaudo + " -> " + " ville: " + ville);
             scannerLine.close();
         }
         scannerFile.close();
         //return scenario;
+        return listTous;
     }
 
     public static Map lectureScenarioMembreCible (ArrayList<String> membre) throws IOException {
