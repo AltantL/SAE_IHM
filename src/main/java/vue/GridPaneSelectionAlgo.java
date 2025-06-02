@@ -28,10 +28,10 @@ public class GridPaneSelectionAlgo extends GridPane implements ConstanteIHM {
 
         comboScenarios = peupleComboBox(SCENARIOS);
 
-        Button boutonAnnuler = new Button("Annuler");
+        Button bouttonAnnuler = new Button("Annuler");
         Button bouttonValider = new Button("Valider");
 
-        bouttonValider.setOnAction(HBoxRoot.getControleur());
+        bouttonValider.setOnAction(actionEvent -> HBoxRoot.getControleur().handle(actionEvent));
 
         this.add(labelTitre, 0, 0);
 
@@ -41,10 +41,10 @@ public class GridPaneSelectionAlgo extends GridPane implements ConstanteIHM {
 
         this.add(comboScenarios, 1, 1);
 
-        this.add(boutonAnnuler, 0, 5);
+        this.add(bouttonAnnuler, 0, 5);
         this.add(bouttonValider, 1, 5);
 
-        boutonAnnuler.setOnAction(new EventHandler<ActionEvent>() {
+        bouttonAnnuler.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 radioButton1.setSelected(true);
