@@ -11,15 +11,8 @@ public class Appli extends Application {
 
     public void start(Stage stage) {
 
-
-
         stage.setTitle("APPLI");
-        HBoxRoot root = new HBoxRoot();
         Accueil accueil = new Accueil();
-        VBoxCreationScenario grid = new VBoxCreationScenario();
-
-        ScrollPane scrollPane = new ScrollPane();
-        scrollPane.setContent(grid);
 
         Scene scene = new Scene(accueil,690, 338);
         File [] css = new File("css").listFiles();
