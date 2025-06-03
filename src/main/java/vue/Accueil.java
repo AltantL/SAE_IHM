@@ -1,6 +1,5 @@
 package vue;
 
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -10,7 +9,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 
-import java.util.List;
 
 
 public class Accueil extends GridPane {
@@ -26,14 +24,16 @@ public class Accueil extends GridPane {
         Label labelTitreAccueil = new Label("Accueil de L'APPLI");
         labelTitreAccueil.setStyle("-fx-text-fill: white;");
 
+        // il faut donner le Accueil.this.getChildren() aux autres classes pour faire un bon boutton retour.
+
         Button boutonCreerSenario = new Button("Créer Senario");
-        boutonCreerSenario.setOnAction(e -> Accueil.this.getChildren().add(new ScrollPane(new GridPaneCreationScenario())));
+        boutonCreerSenario.setOnAction(e -> Accueil.this.getChildren().add(new ScrollPane(new VBoxCreationScenario())));
 
         Button boutonModifierSenario = new Button("Modifier Senario");
-        boutonModifierSenario.setOnAction(e -> Accueil.this.getChildren().add(new ScrollPane(new GridPaneCreationScenario())));
+        boutonModifierSenario.setOnAction(e -> Accueil.this.getChildren().add(new ScrollPane(new VBoxModifierScenario())));
 
         Button boutonUtiliserSenario = new Button("Utiliser Senario");
-        boutonUtiliserSenario.setOnAction(e -> Accueil.this.getChildren().add(new ScrollPane(new GridPaneCreationScenario())));
+        boutonUtiliserSenario.setOnAction(e -> Accueil.this.getChildren().add(new ScrollPane(new VBoxSelectionAlgo())));
 
         Button boutonCredit =  new Button("Credit");
         boutonCredit.setOnAction(e -> onBouttonCredit());
@@ -70,7 +70,7 @@ public class Accueil extends GridPane {
         Label nom2 = new Label("Julien MATHIAS");
 
         Button boutonRetour = new Button("Retour");
-        boutonRetour.setOnAction(e -> this.getChildren().remove(this.getChildren().size()-1));
+        boutonRetour.setOnAction(e -> this.getChildren().removeLast());
 
         gridPane.add(nom1, 0, 0);
         gridPane.add(nom2, 0, 1);
