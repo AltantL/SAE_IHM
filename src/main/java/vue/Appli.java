@@ -12,7 +12,7 @@ public class Appli extends Application {
     public void start(Stage stage) {
 
         stage.setTitle("APPLI");
-        Accueil accueil = new Accueil();
+        Accueil accueil = new Accueil(stage);
 
         Scene scene = new Scene(accueil,690, 338);
         File [] css = new File("css").listFiles();
