@@ -47,32 +47,35 @@ public class GrapheLivraison {
             villeVendeurPlus.put(villeMoins, new ArrayList<>(listeVendeurs));
         }
 
-        Map<String, String> dicoMembresVilles = LectureScenario.lectureVilleDesMembres();  // contient touts les couple vendeur -> acheteur
+        Map<String, String> dicoMembresVilles = LectureScenario.lectureVilleDesMembres();  // contient touts les couple membres -> villes
+        Map<String, String> dicoAcheteurVersVendeur = LectureScenario.lectureVendeurVersAcheteur(scenario);
+        System.out.println(dicoMembresVilles);
         Map<String, ArrayList<String>> graphe = new HashMap<>();
         ArrayList<String> villesContenantPlus = new ArrayList<>();
-        ArrayList<String> membre = new ArrayList<>();
-        String villeDuMembreAvecMoins = new String();
-        ArrayList<String> villeDuMembreAvecMoinsAjout = new ArrayList<>();
-
-
         for (String villeAvecPlus : villeVendeurPlus.keySet()) {
             villesContenantPlus.add(villeAvecPlus);
 
         }
         graphe.put("Velizy+", (ArrayList<String>) villesContenantPlus);
+
         for (String villePlusDuGraphe : graphe.get("Velizy+")) {
-            membre = villeVendeurPlus.get(villePlusDuGraphe); // on recupère les membres pour chaque villes +
+            ArrayList<String> membresAjouts = new ArrayList<>();
+            ArrayList<String> villeDesMembresQuiAchete = new ArrayList<>();
+            List<String> membre = villeVendeurPlus.get(villePlusDuGraphe);// on recupère les membres pour chaque villes +
+
             for (String membreParcours : membre) {
-                villeDuMembreAvecMoins = dicoMembresVilles.get(membre) + "-";
-                villeDuMembreAvecMoinsAjout.add(villeDuMembreAvecMoins);
-                graphe.put(villePlusDuGraphe,villeDuMembreAvecMoinsAjout);
+                membresAjouts.add(membreParcours);
             }
+            for (String vendeursDesVillesPlus : membresAjouts){
+                System.out.println(dicoAcheteurVersVendeur);
+                System.out.println(dicoAcheteurVersVendeur.get("Leuphorie"));
+                System.out.println(dicoAcheteurVersVendeur.get(vendeursDesVillesPlus));
+                villeDesMembresQuiAchete.add(dicoAcheteurVersVendeur.get(vendeursDesVillesPlus)+"-");// on regarde pour chauqe vendeur à qui ils vendent
 
-
-
-
+            }
+            graphe.put(villePlusDuGraphe,villeDesMembresQuiAchete);
         }
-        System.out.println(dicoMembresVilles);
+
         System.out.println(graphe);
         System.out.println(villeAcheteurMoins);
         System.out.println(villeVendeurPlus);
