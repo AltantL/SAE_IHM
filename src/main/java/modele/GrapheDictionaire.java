@@ -33,5 +33,17 @@ public class GrapheDictionaire {
 
         return degresEntrant;
     }
+    public List<String> degreEntrantZero() {
+        Map<String, Integer> degresEntrant = degreEntrant();
+        List<String> sources = new ArrayList<>();
+        for (Map.Entry<String, Integer> entry : degresEntrant.entrySet()) {
+            if (entry.getValue() == 0) {
+                sources.add(entry.getKey());
+            }
+        }
+        return sources;
+    }
+
+
 
 }
