@@ -20,10 +20,26 @@ public class ClientGrapheDictionaire {
 
         System.out.println(test);
         GrapheDictionaire graphe = new GrapheDictionaire(donnees);
+        //Topologique
         List<String> ordre = graphe.triTopologique();  // contient le tri
-        Integer testDistanceTot = LectureScenario.calculerDistanceTotale(ordre,distance); // contient la distance total du tri
-        System.out.println(testDistanceTot);
+        Integer testDistanceTotTopologique = LectureScenario.calculerDistanceTotale(ordre,distance); // contient la distance total du tri
+        System.out.println(testDistanceTotTopologique);
         System.out.println(ordre);
+
+        //Heuristique
+        List<String> ordre2 = graphe.heuristique();
+        Integer testDistanceTotHeuristique = LectureScenario.calculerDistanceTotale(ordre2,distance); // contient la distance total du tri
+        System.out.println(testDistanceTotHeuristique);
+        System.out.println(ordre2);
+
+        // k élement
+        List<String> ordre3 = graphe.triAStar(distance);
+        Integer testDistanceTotAstar = LectureScenario.calculerDistanceTotale(ordre3,distance); // contient la distance total du tri
+        System.out.println(testDistanceTotAstar);
+        System.out.println(ordre3);
+
+
+
 
 
     }
