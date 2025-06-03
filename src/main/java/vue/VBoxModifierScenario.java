@@ -7,6 +7,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import modele.LectureScenario;
+
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +47,16 @@ public class VBoxModifierScenario extends VBox {
         });
         Button buttonAnnuler = new Button("Annuler");
         buttonAnnuler.setOnAction(e -> {vBox.getChildren().clear();});
+
+        Button buttonEnregistrer = new Button("Enregistrer");
+        buttonEnregistrer.setOnAction(e -> {
+            try {
+                creationScenario(scenario);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+
         Button buttonRetour = new Button("Retour");
         buttonRetour.setOnAction(e -> {children.removeLast();});
 
@@ -67,7 +80,7 @@ public class VBoxModifierScenario extends VBox {
         HBox hBox3 = new HBox();
 
         hBox1.getChildren().addAll(bouttonPlus, bouttonMoins);
-        hBox2.getChildren().addAll(buttonValider, buttonAnnuler, buttonRetour);
+        hBox2.getChildren().addAll(buttonValider, buttonAnnuler, buttonEnregistrer, buttonRetour);
         hBox3.getChildren().addAll(comboScenarios);
 
         this.getChildren().addAll(labelTitle,hBox3,hBox1,hBox2);
@@ -112,16 +125,36 @@ public class VBoxModifierScenario extends VBox {
             HBox hBox = new HBox();
 
             comboCreationScenarios1 = peupleComboBox(achven);
+            comboCreationScenarios1.setValue(pose1.get(i).toString());
+
             comboCreationScenarios2 = peupleComboBox(achven);
+            comboCreationScenarios2.setValue(pose2.get(i).toString());
 
             Label creationScenario = new Label(" -> ");
             hBox.getChildren().addAll(comboCreationScenarios1,creationScenario,comboCreationScenarios2);
             vBox.getChildren().addAll(hBox);
         }
 
-
-
         this.getChildren().add(vBox);
+    }
+
+    private void creationScenario(String scenario1) throws IOException {
+        String scenario = "";
+
+        for(Node hBox : vBox.getChildren()){
+            ComboBox<String> truc = (ComboBox) ((HBox) hBox).getChildren().get(0);
+            ComboBox<String> truc2 = (ComboBox) ((HBox) hBox).getChildren().get(2);
+
+            String chose = truc.getSelectionModel().getSelectedItem();
+            String chose2 = truc2.getSelectionModel().getSelectedItem();
+
+            scenario += chose + " -> " + chose2 + "\n";
+
+        }
+        FileOutputStream fos = new FileOutputStream("./scenarios" + File.separator + scenario1 + ".txt");
+        fos.write(scenario.getBytes());
+        fos.flush();
+        fos.close();
     }
 
     private ComboBox<String> peupleComboBox(String[] strings) {
