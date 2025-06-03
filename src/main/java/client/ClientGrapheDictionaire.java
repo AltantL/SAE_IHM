@@ -32,7 +32,7 @@ public class ClientGrapheDictionaire {
         System.out.println(testDistanceTotHeuristique);
         System.out.println(ordre2);
 
-        // k élement
+        // Astar
         List<String> ordre3 = graphe.triAStar(distance);
         Integer testDistanceTotAstar = LectureScenario.calculerDistanceTotale(ordre3,distance); // contient la distance total du tri
         System.out.println(testDistanceTotAstar);
