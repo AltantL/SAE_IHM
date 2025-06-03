@@ -12,7 +12,7 @@ import static modele.LectureScenario.*;
 
 
 public class GrapheLivraison {
-    public static void grapheLivraison(String scenario) throws IOException {
+    public static Map<String, ArrayList<String>> grapheLivraison(String scenario) throws IOException {
         List[] achven = lectureScenarioVille(scenario);
 
         List achteurL = achven[0];
@@ -88,6 +88,8 @@ public class GrapheLivraison {
         System.out.println(villeAcheteurMoins);
         System.out.println(villeVendeurPlus);
         System.out.println(graphe);
+        return graphe;
 
     }
+
 }
