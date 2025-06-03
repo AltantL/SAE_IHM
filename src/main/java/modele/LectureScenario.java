@@ -214,6 +214,19 @@ public class LectureScenario {
     public static int getDistance(HashMap<String, HashMap<String, Integer>> distances, String ville1, String ville2) {
             return distances.get(ville1).get(ville2);
     }
+    public static int calculerDistanceTotale(List<String> chemin, HashMap<String, HashMap<String, Integer>> distances) {
+        int distanceTotale = 0;
+
+        for (int i = 0; i < chemin.size() - 1; i++) {
+            String villeDepart = chemin.get(i).replace("+", "").replace("-", "");
+            String villeArrivee = chemin.get(i + 1).replace("+", "").replace("-", "");
+
+            int distance = getDistance(distances, villeDepart, villeArrivee);
+            distanceTotale += distance;
+        }
+
+        return distanceTotale;
+    }
 
     public static ArrayList<Map> regrouperParVille(String scenario) throws IOException {
         List[] achven = lectureScenarioVille(scenario);
