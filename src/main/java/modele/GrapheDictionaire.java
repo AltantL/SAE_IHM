@@ -16,6 +16,22 @@ public class GrapheDictionaire {
             }
         }
     }
+    public Set<String> getSommets() {
+        return mapSommetsVoisins.keySet();
+    }
 
+    public Map<String, Integer> degreEntrant() {
+        Map<String, Integer> degresEntrant = new HashMap<>();
+        for (String sommet : getSommets()) {
+            degresEntrant.put(sommet, 0);
+        }
+        for (List<String> voisins : mapSommetsVoisins.values()) {
+            for (String voisin : voisins) {
+                degresEntrant.put(voisin, degresEntrant.getOrDefault(voisin, 0) + 1);
+            }
+        }
+
+        return degresEntrant;
+    }
 
 }
