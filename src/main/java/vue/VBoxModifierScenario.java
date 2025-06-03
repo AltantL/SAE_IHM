@@ -1,16 +1,15 @@
 package vue;
 
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import modele.LectureScenario;
-
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.List;
 
 import static constantes.ConstanteIHM.SCENARIOS;
 
@@ -25,27 +24,40 @@ public class VBoxModifierScenario extends VBox {
 
     private static Button buttonValider;
 
-    public VBoxModifierScenario() {
+    private VBox vBox = new VBox();
+
+    public VBoxModifierScenario(List<Node> children) {
 
         Label labelTitle = new Label("Modification de scenarios");
 
         comboScenarios = peupleComboBox(SCENARIOS);
 
-        scenario = quelScenario(comboScenarios);
 
         buttonValider = new Button("Valider");
         buttonValider.setOnAction(e -> {
             try {
-                poseDeScenario(scenario);
+                vBox.getChildren().clear();
+                poseDeScenario(quelScenario(comboScenarios));
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
         });
         Button buttonAnnuler = new Button("Annuler");
+        buttonAnnuler.setOnAction(e -> {vBox.getChildren().clear();});
         Button buttonRetour = new Button("Retour");
+        buttonRetour.setOnAction(e -> {children.removeLast();});
 
         Button bouttonPlus = new Button("+");
+        bouttonPlus.setOnAction(e -> {
+            try {
+                onPlus(vBox.getChildren());
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+
         Button bouttonMoins = new Button("-");
+        bouttonMoins.setOnAction(e -> {vBox.getChildren().removeLast();});
 
         comboCreationScenarios1 = new ComboBox<>();
         comboCreationScenarios2 = new ComboBox<>();
@@ -67,34 +79,49 @@ public class VBoxModifierScenario extends VBox {
         return scenario;
     }
 
+    private void onPlus(List<Node> nodes) throws IOException {
+        HBox hBox = new HBox();
+
+        ArrayList achven = LectureScenario.lectureScenarioMembre();
+
+        comboCreationScenarios1 = peupleComboBox(achven);
+        comboCreationScenarios2 = peupleComboBox(achven);
+
+        Label creationScenario = new Label(" -> ");
+
+        hBox.getChildren().addAll(comboCreationScenarios1,creationScenario,comboCreationScenarios2);
+
+        nodes.add(hBox);
+    }
+
     private void poseDeScenario(String scenrio) throws IOException {
 
         scenrio = scenrio+".txt";
 
         ArrayList pose = LectureScenario.lectureScenario(scenrio);
 
-//        System.out.println(pose);
-
         ArrayList pose1 = (ArrayList) pose.get(0);
         ArrayList pose2 = (ArrayList) pose.get(1);
 
-        Label labelEspace = new Label(" -> ");
+        vBox = new VBox();
 
+        ArrayList achven = LectureScenario.lectureScenarioMembre();
 
         for (int i=0; i < pose1.size() ; i++) {
-            Label pose11 = new Label(pose1.get(i).toString());
-            Label pose22 = new Label(pose2.get(i).toString());
 
-//            System.out.println(pose11);
-//            System.out.println(pose22);
+            HBox hBox = new HBox();
 
-            HBox hBox = new HBox(pose11, labelEspace, pose22);
+            comboCreationScenarios1 = peupleComboBox(achven);
+            comboCreationScenarios2 = peupleComboBox(achven);
 
-            System.out.println(hBox);
-
-            this.getChildren().add(hBox);
+            Label creationScenario = new Label(" -> ");
+            hBox.getChildren().addAll(comboCreationScenarios1,creationScenario,comboCreationScenarios2);
+            vBox.getChildren().addAll(hBox);
         }
 
+
+
+        this.getChildren().add(vBox);
     }
 
     private ComboBox<String> peupleComboBox(String[] strings) {
@@ -103,6 +130,18 @@ public class VBoxModifierScenario extends VBox {
             comboBox.getItems().add(string);
         }
         comboBox.setValue(strings[0]);
+        return comboBox;
+    }
+
+    private ComboBox<String> peupleComboBox(ArrayList achven) {
+
+        ComboBox<String> comboBox = new ComboBox<>();
+
+        for (int i = 0; i < achven.size(); i++) {
+            String string = achven.get(i).toString();
+            comboBox.getItems().add(string);
+        }
+        comboBox.setValue(achven.get(0).toString());
         return comboBox;
     }
 
