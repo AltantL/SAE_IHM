@@ -6,13 +6,11 @@ import javafx.event.EventHandler;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 
-import javax.swing.*;
+public class VBoxSelectionAlgo extends GridPane implements ConstanteIHM {
 
-public class GridPaneSelectionAlgo extends GridPane implements ConstanteIHM {
+    private static ComboBox comboScenarios;
 
-    public ComboBox comboScenarios;
-
-    public GridPaneSelectionAlgo() {
+    public VBoxSelectionAlgo() {
 
         Label labelTitre = new Label("SAE JAVA IHM");
 
@@ -29,9 +27,13 @@ public class GridPaneSelectionAlgo extends GridPane implements ConstanteIHM {
         comboScenarios = peupleComboBox(SCENARIOS);
 
         Button bouttonAnnuler = new Button("Annuler");
-        Button bouttonValider = new Button("Valider");
 
+        Button bouttonValider = new Button("Valider");
         bouttonValider.setOnAction(actionEvent -> HBoxRoot.getControleur().handle(actionEvent));
+
+        Button bouttonRetour = new Button("Retour");
+        bouttonRetour.setOnAction(actionEvent -> this.getChildren().removeLast());
+
 
         this.add(labelTitre, 0, 0);
 
@@ -43,6 +45,7 @@ public class GridPaneSelectionAlgo extends GridPane implements ConstanteIHM {
 
         this.add(bouttonAnnuler, 0, 5);
         this.add(bouttonValider, 1, 5);
+        this.add(bouttonRetour, 0, 6);
 
         bouttonAnnuler.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -60,5 +63,9 @@ public class GridPaneSelectionAlgo extends GridPane implements ConstanteIHM {
         }
         comboBox.setValue(strings[0]);
         return comboBox;
+    }
+
+    public static ComboBox getComboScenarios() {
+        return comboScenarios;
     }
 }
