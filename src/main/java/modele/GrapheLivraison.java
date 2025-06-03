@@ -47,7 +47,7 @@ public class GrapheLivraison {
             villeVendeurPlus.put(villeMoins, new ArrayList<>(listeVendeurs));
         }
 
-        //Map<String, String> membres = LectureScenario.lectureScenarioMembreCible();  // contient touts les couple vendeur -> acheteur
+        Map<String, String> membres = LectureScenario.lectureVilleDesMembres();  // contient touts les couple vendeur -> acheteur
         Map<String, ArrayList<String>> graphe = new HashMap<>();
         List<String> villesContenantPlus = new ArrayList<>();
 
@@ -56,8 +56,7 @@ public class GrapheLivraison {
 
         }
         graphe.put("Velizy+", (ArrayList<String>) villesContenantPlus);
-        System.out.println(acheteur);
-        System.out.println(vendeur);
+        System.out.println(membres);
         System.out.println(graphe);
         System.out.println(villeAcheteurMoins);
         System.out.println(villeVendeurPlus);
