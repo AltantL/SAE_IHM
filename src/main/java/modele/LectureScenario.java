@@ -53,24 +53,30 @@ public class LectureScenario {
 
         return membresVilles;
     }
-    public static Map lectureVendeurVersAcheteur (String scenario) throws IOException {
-
+    public static Map<String, String> lectureVendeurVersAcheteur(String scenario) throws IOException {
         Map<String, String> transaction = new HashMap<>();
-        File file = new File("ressources" + File.separator + scenario);
+        File file = new File("scenarios" + File.separator + scenario);
         Scanner scannerFile = new Scanner(file);
-        Scanner scannerLine;
 
-        while(scannerFile.hasNextLine()) {
-            String Line = scannerFile.nextLine();
-            scannerLine = new Scanner(Line);
-            String vendeur = scannerLine.next();
-            String acheteur = scannerLine.next();
-            transaction.put(vendeur,acheteur);
-            scannerLine.close();
+        while (scannerFile.hasNextLine()) {
+            String line = scannerFile.nextLine().trim();
+            if (!line.isEmpty()) {
+                Scanner scannerLine = new Scanner(line).useDelimiter("->");
+                if (scannerLine.hasNext()) {
+                    String vendeur = scannerLine.next().trim();
+                    if (scannerLine.hasNext()) {
+                        String acheteur = scannerLine.next().trim();
+                        transaction.put(vendeur, acheteur);
+                    }
+                }
+                scannerLine.close();
+            }
         }
-
+        scannerFile.close();
         return transaction;
     }
+
+
 
 
     public static ArrayList lectureScenarioMembre () throws IOException {
