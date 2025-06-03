@@ -47,16 +47,25 @@ public class GrapheLivraison {
             villeVendeurPlus.put(villeMoins, new ArrayList<>(listeVendeurs));
         }
 
-        Map<String, String> membres = LectureScenario.lectureVilleDesMembres();  // contient touts les couple vendeur -> acheteur
+        Map<String, String> dicoMembresVilles = LectureScenario.lectureVilleDesMembres();  // contient touts les couple vendeur -> acheteur
         Map<String, ArrayList<String>> graphe = new HashMap<>();
-        List<String> villesContenantPlus = new ArrayList<>();
+        ArrayList<String> villesContenantPlus = new ArrayList<>();
+        String membre = new String();
+        String membreMoins = new String();
+
 
         for (String villeAvecPlus : villeVendeurPlus.keySet()) {
             villesContenantPlus.add(villeAvecPlus);
 
         }
         graphe.put("Velizy+", (ArrayList<String>) villesContenantPlus);
-        System.out.println(membres);
+        for (String villePlusDuGraphe : graphe.get("Velizy+")) {
+            membre = String.valueOf(villeVendeurPlus.get(villePlusDuGraphe)); // on recupère les membres pour chaque villes +
+            membreMoins = dicoMembresVilles.get(membre) + "-";
+
+
+        }
+        System.out.println(dicoMembresVilles);
         System.out.println(graphe);
         System.out.println(villeAcheteurMoins);
         System.out.println(villeVendeurPlus);
