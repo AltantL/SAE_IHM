@@ -73,17 +73,21 @@ public class GrapheLivraison {
                 membresQuiAchete.add(dicoAcheteurVersVendeur.get(vendeursDesVillesPlus));// on regarde pour chauqe vendeur à qui ils vendent
             }
             for (String parcoursMembresQuiAchete : membresQuiAchete) {
-                System.out.println(dicoMembresVilles.get(parcoursMembresQuiAchete) + "-");
                 villeDesMembresQuiAchete.add(dicoMembresVilles.get(parcoursMembresQuiAchete) + "-");
 
             }
 
             graphe.put(villePlusDuGraphe,villeDesMembresQuiAchete);
         }
-
-        System.out.println(graphe);
+        //Boucle qui va parcourir la liste de tous les villes achteurs et va mettre un lien avec Velizy-
+        for (String ville : villeAcheteurMoins.keySet()) {
+            ArrayList<String> velizyMoin = new ArrayList<>();
+            velizyMoin.add("Velizy-");
+            graphe.put(ville,velizyMoin);
+        }
         System.out.println(villeAcheteurMoins);
         System.out.println(villeVendeurPlus);
+        System.out.println(graphe);
 
     }
 }
