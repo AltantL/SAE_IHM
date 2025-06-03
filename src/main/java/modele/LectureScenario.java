@@ -7,12 +7,17 @@ import java.util.*;
 public class LectureScenario {
 
 
-    public static void lectureScenario (String scenrio) throws IOException {
+    public static ArrayList<ArrayList<String>> lectureScenario (String scenrio) throws IOException {
 
         File file = new File("scenarios" + File.separator + scenrio);
         Scanner scannerFile = new Scanner(file);
         Scanner scannerLine;
 
+
+        ArrayList<ArrayList<String>> vendeurEtAcheteur = new ArrayList<>();
+
+        ArrayList<String> achteur1 = new ArrayList<>();
+        ArrayList<String> vendeur1 = new ArrayList<>();
 
         while(scannerFile.hasNextLine()) {
             String Line = scannerFile.nextLine();
@@ -20,11 +25,15 @@ public class LectureScenario {
             String vendeur = scannerLine.next();
             scannerLine.next(); // "->"
             String achteur = scannerLine.next();
-            //System.out.println("vendeur: " + vendeur + " -> " + " achteur: " + achteur);
+            achteur1.add(achteur);
+            vendeur1.add(vendeur);
             scannerLine.close();
         }
         scannerFile.close();
-        //return scenario;
+        vendeurEtAcheteur.add(vendeur1);
+        vendeurEtAcheteur.add(achteur1);
+
+        return vendeurEtAcheteur;
     }
     public static Map lectureVilleDesMembres () throws IOException {
 
