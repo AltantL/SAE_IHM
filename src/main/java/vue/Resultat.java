@@ -25,8 +25,14 @@ public class Resultat extends VBox {
         testResultat = LectureScenario.regrouperParVille(senario+".txt");
         System.out.println(testResultat);
         testResultat1 = testResultat;
-        Label testResultat2 = new Label(testResultat1.toString());
-        this.getChildren().add(testResultat2);
+
+        for (Map i : testResultat) {
+            Label testResultat2 = new Label(i.toString());
+            this.getChildren().add(testResultat2);
+        }
+
+
+
 
     }
 }
