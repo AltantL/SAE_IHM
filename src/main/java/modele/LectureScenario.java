@@ -179,11 +179,13 @@ public class LectureScenario {
 
     }
 
-    public static void lectureDistance() throws IOException {
+    public static HashMap<String, HashMap<String, Integer>> lectureDistance() throws IOException {
         File file = new File("ressources" + File.separator + "distances.txt");
         Scanner scannerFile = new Scanner(file);
-        HashMap<String, ArrayList<Integer>> villesDistances = new HashMap<>(); // nomville : listdistance
-        ArrayList<String> listeVille = new ArrayList<>(); // liste de toutes les villes
+
+        HashMap<String, ArrayList<Integer>> villesDistances = new HashMap<>();
+        ArrayList<String> listeVille = new ArrayList<>();
+
         while (scannerFile.hasNextLine()) {
             Scanner scannerLine = new Scanner(scannerFile.nextLine());
             String ville = scannerLine.next();
@@ -196,6 +198,7 @@ public class LectureScenario {
             scannerLine.close();
         }
         scannerFile.close();
+
         HashMap<String, HashMap<String, Integer>> distancesParVille = new HashMap<>();
         for (String villeSource : listeVille) {
             ArrayList<Integer> distances = villesDistances.get(villeSource);
@@ -205,13 +208,11 @@ public class LectureScenario {
             }
             distancesParVille.put(villeSource, versAutres);
         }
-        for (String ville : listeVille) {
-            System.out.print(ville + " : ");
-            for (String autreVille : listeVille) {
-                System.out.print(autreVille + "=" + distancesParVille.get(ville).get(autreVille) + "km, ");
-            }
-            System.out.println();
-        }
+
+        return distancesParVille;
+    }
+    public static int getDistance(HashMap<String, HashMap<String, Integer>> distances, String ville1, String ville2) {
+            return distances.get(ville1).get(ville2);
     }
 
     public static ArrayList<Map> regrouperParVille(String scenario) throws IOException {
