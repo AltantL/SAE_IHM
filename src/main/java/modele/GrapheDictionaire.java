@@ -16,6 +16,7 @@ public class GrapheDictionaire {
             }
         }
     }
+
     public Set<String> getSommets() {
         return mapSommetsVoisins.keySet();
     }
@@ -44,6 +45,39 @@ public class GrapheDictionaire {
         return sources;
     }
 
+    public List<String> triTopologique() {
+        Map<String, Integer> degresEntrant = degreEntrant();
+        List<String> sources = degreEntrantZero();
+        List<String> resultat = new ArrayList<>();
 
+        while (!sources.isEmpty()) {
+            String source = sources.remove(0);
+            resultat.add(source);
 
+            for (String voisin : mapSommetsVoisins.getOrDefault(source, Collections.emptyList())) {
+                degresEntrant.put(voisin, degresEntrant.get(voisin) - 1);
+                if (degresEntrant.get(voisin) == 0) {
+                    sources.add(voisin);
+                }
+            }
+        }
+
+        if (resultat.size() != mapSommetsVoisins.size()) {
+            throw new IllegalStateException("Le graphe contient un cycle, tri topologique impossible");
+        }
+
+        return resultat;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Sommets : ").append(getSommets().size()).append("\n");
+        for (Map.Entry<String, List<String>> entry : mapSommetsVoisins.entrySet()) {
+            sb.append("Sommet ").append(entry.getKey())
+                    .append(" -> ").append(entry.getValue()).append("\n");
+        }
+        return sb.toString();
+    }
 }
+
