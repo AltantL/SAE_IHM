@@ -12,7 +12,7 @@ import static modele.LectureScenario.*;
 
 
 public class GrapheLivraison {
-    public static void grapheLivraison(String scenario) throws IOException {
+    public static Map<String, ArrayList<String>> grapheLivraison(String scenario) throws IOException {
         List[] achven = lectureScenarioVille(scenario);
 
         List achteurL = achven[0];
@@ -47,35 +47,49 @@ public class GrapheLivraison {
             villeVendeurPlus.put(villeMoins, new ArrayList<>(listeVendeurs));
         }
 
-        Map<String, String> dicoMembresVilles = LectureScenario.lectureVilleDesMembres();  // contient touts les couple vendeur -> acheteur
+        Map<String, String> dicoMembresVilles = LectureScenario.lectureVilleDesMembres();  // contient touts les couple membres -> villes
+        Map<String, String> dicoAcheteurVersVendeur = LectureScenario.lectureVendeurVersAcheteur(scenario);
+        System.out.println(dicoMembresVilles);
         Map<String, ArrayList<String>> graphe = new HashMap<>();
         ArrayList<String> villesContenantPlus = new ArrayList<>();
-        ArrayList<String> membre = new ArrayList<>();
-        String villeDuMembreAvecMoins = new String();
-        ArrayList<String> villeDuMembreAvecMoinsAjout = new ArrayList<>();
-
-
         for (String villeAvecPlus : villeVendeurPlus.keySet()) {
             villesContenantPlus.add(villeAvecPlus);
 
         }
         graphe.put("Velizy+", (ArrayList<String>) villesContenantPlus);
+
         for (String villePlusDuGraphe : graphe.get("Velizy+")) {
-            membre = villeVendeurPlus.get(villePlusDuGraphe); // on recupère les membres pour chaque villes +
+            ArrayList<String> membresAjouts = new ArrayList<>();
+            ArrayList<String> membresQuiAchete = new ArrayList<>();
+            ArrayList<String> villeDesMembresQuiAchete = new ArrayList<>();
+
+            List<String> membre = villeVendeurPlus.get(villePlusDuGraphe);// on recupère les membres pour chaque villes +
+
             for (String membreParcours : membre) {
-                villeDuMembreAvecMoins = dicoMembresVilles.get(membre) + "-";
-                villeDuMembreAvecMoinsAjout.add(villeDuMembreAvecMoins);
-                graphe.put(villePlusDuGraphe,villeDuMembreAvecMoinsAjout);
+                membresAjouts.add(membreParcours);
+            }
+            for (String vendeursDesVillesPlus : membresAjouts){
+                //System.out.println(dicoAcheteurVersVendeur.get(vendeursDesVillesPlus));
+                membresQuiAchete.add(dicoAcheteurVersVendeur.get(vendeursDesVillesPlus));// on regarde pour chauqe vendeur à qui ils vendent
+            }
+            for (String parcoursMembresQuiAchete : membresQuiAchete) {
+                villeDesMembresQuiAchete.add(dicoMembresVilles.get(parcoursMembresQuiAchete) + "-");
+
             }
 
-
-
-
+            graphe.put(villePlusDuGraphe,villeDesMembresQuiAchete);
         }
-        System.out.println(dicoMembresVilles);
-        System.out.println(graphe);
+        //Boucle qui va parcourir la liste de tous les villes achteurs et va mettre un lien avec Velizy-
+        for (String ville : villeAcheteurMoins.keySet()) {
+            ArrayList<String> velizyMoin = new ArrayList<>();
+            velizyMoin.add("Velizy-");
+            graphe.put(ville,velizyMoin);
+        }
         System.out.println(villeAcheteurMoins);
         System.out.println(villeVendeurPlus);
+        System.out.println(graphe);
+        return graphe;
 
     }
+
 }
