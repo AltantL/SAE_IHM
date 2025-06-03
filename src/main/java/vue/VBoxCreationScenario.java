@@ -23,7 +23,7 @@ public class VBoxCreationScenario extends VBox {
     private static Button bouttonValider;
     private TextField textFieldNomScenario;
 
-    public VBoxCreationScenario() {
+    public VBoxCreationScenario(List<Node> children) {
         Label labelTitre = new Label("Création de Scénario");
 
         Button bouttonPlus = new Button("+");
@@ -34,6 +34,9 @@ public class VBoxCreationScenario extends VBox {
                 throw new RuntimeException(ex);
             }
         });
+
+        Button bouttonMoins = new Button("-");
+        bouttonMoins.setOnAction(e -> {retirerEchange();});
 
         bouttonValider = new Button("Valider");
         bouttonValider.setOnAction(e -> {
@@ -46,11 +49,8 @@ public class VBoxCreationScenario extends VBox {
 
         Label labelEspace = new Label("               ");
 
-        Button bouttonMoins = new Button("-");
-        bouttonMoins.setOnAction(e -> {retirerEchange();});
-
         Button bouttonRetour = new Button("Retour");
-        bouttonRetour.setOnAction(e -> {this.getChildren().removeLast();});
+        bouttonRetour.setOnAction(e -> {children.removeLast();});
 
         Label nomScenario = new Label("Nom Scenario");
         textFieldNomScenario = new TextField();
@@ -79,14 +79,13 @@ public class VBoxCreationScenario extends VBox {
 
         Label creationScenario = new Label(" -> ");
 
-
         hBox.getChildren().addAll(comboCreationScenarios1,creationScenario,comboCreationScenarios2);
 
         this.getChildren().add(hBox);
 
     }
 
-    private ComboBox<String> peupleComboBox(ArrayList achven) {
+    private static ComboBox<String> peupleComboBox(ArrayList achven) {
 
         ComboBox<String> comboBox = new ComboBox<>();
 
@@ -109,10 +108,10 @@ public class VBoxCreationScenario extends VBox {
             String chose = truc.getSelectionModel().getSelectedItem();
             String chose2 = truc2.getSelectionModel().getSelectedItem();
 
-            scenario += chose + " --> " + chose2 + "\n";
+            scenario += chose + " -> " + chose2 + "\n";
 
         }
-        FileOutputStream fos = new FileOutputStream("./scenarioCreer" + File.separator + text + ".txt");
+        FileOutputStream fos = new FileOutputStream("./scenarios" + File.separator + text + ".txt");
         fos.write(scenario.getBytes());
         fos.flush();
         fos.close();
