@@ -27,13 +27,13 @@ public class Accueil extends GridPane {
         // il faut donner le Accueil.this.getChildren() aux autres classes pour faire un bon boutton retour.
 
         Button boutonCreerSenario = new Button("Créer Senario");
-        boutonCreerSenario.setOnAction(e -> Accueil.this.getChildren().add(new ScrollPane(new VBoxCreationScenario())));
+        boutonCreerSenario.setOnAction(e -> getChildrenCreation());
 
         Button boutonModifierSenario = new Button("Modifier Senario");
-        boutonModifierSenario.setOnAction(e -> Accueil.this.getChildren().add(new ScrollPane(new VBoxModifierScenario())));
+        boutonModifierSenario.setOnAction(e -> getChildrenModifier());
 
         Button boutonUtiliserSenario = new Button("Utiliser Senario");
-        boutonUtiliserSenario.setOnAction(e -> Accueil.this.getChildren().add(new ScrollPane(new VBoxSelectionAlgo())));
+        boutonUtiliserSenario.setOnAction(e -> getChildrenSelection());
 
         Button boutonCredit =  new Button("Credit");
         boutonCredit.setOnAction(e -> onBouttonCredit());
@@ -61,6 +61,18 @@ public class Accueil extends GridPane {
 
         this.getChildren().add(root);
 
+    }
+
+    private boolean getChildrenSelection() {
+        return Accueil.this.getChildren().add(new ScrollPane(new HBoxSelectionAlgo(this.getChildren())));
+    }
+
+    private boolean getChildrenModifier() {
+        return Accueil.this.getChildren().add(new ScrollPane(new VBoxModifierScenario(this.getChildren())));
+    }
+
+    private boolean getChildrenCreation() {
+        return Accueil.this.getChildren().add(new ScrollPane(new VBoxCreationScenario(this.getChildren())));
     }
 
     private void onBouttonCredit() {
