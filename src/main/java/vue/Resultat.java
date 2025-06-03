@@ -10,7 +10,7 @@ import java.util.Map;
 
 public class Resultat extends VBox {
 
-    public ArrayList<Map> testResultat1;
+    private static ArrayList<Map> testResultat1;
 
     public Resultat() {
         Label labelTitre = new Label("Resultat");
