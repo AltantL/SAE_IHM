@@ -8,11 +8,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
-
+import javafx.stage.Stage;
 
 
 public class Accueil extends GridPane {
-    public Accueil() {
+    public Accueil(Stage stage) {
 
         AnchorPane content = new AnchorPane();
 
@@ -24,19 +24,20 @@ public class Accueil extends GridPane {
         Label labelTitreAccueil = new Label("Accueil de L'APPLI");
         labelTitreAccueil.setStyle("-fx-text-fill: white;");
 
-        // il faut donner le Accueil.this.getChildren() aux autres classes pour faire un bon boutton retour.
-
-        Button boutonCreerSenario = new Button("Créer Senario");
+        Button boutonCreerSenario = new Button("Créer Scenario");
         boutonCreerSenario.setOnAction(e -> getChildrenCreation());
 
-        Button boutonModifierSenario = new Button("Modifier Senario");
+        Button boutonModifierSenario = new Button("Modifier Scenario");
         boutonModifierSenario.setOnAction(e -> getChildrenModifier());
 
-        Button boutonUtiliserSenario = new Button("Utiliser Senario");
+        Button boutonUtiliserSenario = new Button("Utiliser Scenario");
         boutonUtiliserSenario.setOnAction(e -> getChildrenSelection());
 
         Button boutonCredit =  new Button("Credit");
         boutonCredit.setOnAction(e -> onBouttonCredit());
+
+        Button boutonQuitter = new Button("Quitter");
+        boutonQuitter.setOnAction(e -> {stage.close();});
 
 
         AnchorPane.setTopAnchor(labelTitreAccueil, 112.6);
@@ -54,7 +55,10 @@ public class Accueil extends GridPane {
         AnchorPane.setBottomAnchor(boutonCredit, 10.0);
         AnchorPane.setLeftAnchor(boutonCredit, 10.0);
 
-        content.getChildren().addAll(labelTitreAccueil, boutonCreerSenario, boutonModifierSenario, boutonUtiliserSenario, boutonCredit);
+        AnchorPane.setBottomAnchor(boutonQuitter, 10.0);
+        AnchorPane.setRightAnchor(boutonQuitter, 10.0);
+
+        content.getChildren().addAll(labelTitreAccueil, boutonCreerSenario, boutonModifierSenario, boutonUtiliserSenario, boutonCredit, boutonQuitter);
 
         StackPane root = new StackPane();
         root.getChildren().addAll(background,content);
