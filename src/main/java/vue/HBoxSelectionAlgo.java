@@ -3,14 +3,23 @@ package vue;
 import constantes.ConstanteIHM;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 
-public class VBoxSelectionAlgo extends GridPane implements ConstanteIHM {
+import java.io.IOException;
+import java.util.List;
+
+public class HBoxSelectionAlgo extends HBox implements ConstanteIHM {
 
     private static ComboBox comboScenarios;
 
-    public VBoxSelectionAlgo() {
+    public HBoxSelectionAlgo(List<Node> children) {
+
+        Resultat resultat = new Resultat();
+
+        GridPane grid = new GridPane();
 
         Label labelTitre = new Label("SAE JAVA IHM");
 
@@ -29,23 +38,25 @@ public class VBoxSelectionAlgo extends GridPane implements ConstanteIHM {
         Button bouttonAnnuler = new Button("Annuler");
 
         Button bouttonValider = new Button("Valider");
-        bouttonValider.setOnAction(actionEvent -> HBoxRoot.getControleur().handle(actionEvent));
+        bouttonValider.setOnAction(actionEvent -> onBoutonValider(resultat));
 
         Button bouttonRetour = new Button("Retour");
-        bouttonRetour.setOnAction(actionEvent -> this.getChildren().removeLast());
+        bouttonRetour.setOnAction(actionEvent -> children.removeLast());
 
 
-        this.add(labelTitre, 0, 0);
+        grid.add(labelTitre, 0, 0);
 
-        this.add(radioButton1, 0, 1);
-        this.add(radioButton2, 0, 2);
-        this.add(radioButton3, 0, 3);
+        grid.add(radioButton1, 0, 1);
+        grid.add(radioButton2, 0, 2);
+        grid.add(radioButton3, 0, 3);
 
-        this.add(comboScenarios, 1, 1);
+        grid.add(comboScenarios, 1, 1);
 
-        this.add(bouttonAnnuler, 0, 5);
-        this.add(bouttonValider, 1, 5);
-        this.add(bouttonRetour, 0, 6);
+        grid.add(bouttonAnnuler, 0, 5);
+        grid.add(bouttonValider, 1, 5);
+        grid.add(bouttonRetour, 0, 6);
+
+        grid.add(resultat, 5, 0);
 
         bouttonAnnuler.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -54,6 +65,22 @@ public class VBoxSelectionAlgo extends GridPane implements ConstanteIHM {
                 comboScenarios.setValue(SCENARIOS[0]);
             }
         });
+
+        this.getChildren().addAll(grid, resultat);
+    }
+
+    private static void onBoutonValider(Resultat resultat) {
+
+        ComboBox numScenario = comboScenarios;
+        int senario = numScenario.getSelectionModel().getSelectedIndex();
+        String testSenario = SCENARIOS[senario];
+
+        try {
+            resultat.affichageResultat(testSenario);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     private ComboBox<String> peupleComboBox(String[] strings) {
