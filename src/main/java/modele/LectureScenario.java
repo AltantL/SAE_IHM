@@ -26,7 +26,15 @@ public class LectureScenario {
         scannerFile.close();
         //return scenario;
     }
+    public static Map lectureVilleDesMembres () throws IOException {
+        File file = new File("ressources" + File.separator + "membres_APPLI.txt");
+        Scanner scannerFile = new Scanner(file);
+        Scanner scannerLine;
 
+        ArrayList<String> listTous = new ArrayList<>();
+        HashMap<String,String> membres = new HashMap();
+        return  membres;
+    }
     public static ArrayList lectureScenarioMembre () throws IOException {
 
         File file = new File("ressources" + File.separator + "membres_APPLI.txt");
