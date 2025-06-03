@@ -26,6 +26,43 @@ public class LectureScenario {
         scannerFile.close();
         //return scenario;
     }
+    public static Map lectureVilleDesMembres () throws IOException {
+
+        Map<String, String> membresVilles = new HashMap<>();
+        File file = new File("ressources" + File.separator + "membres_APPLI.txt");
+        Scanner scannerFile = new Scanner(file);
+        Scanner scannerLine;
+
+        while(scannerFile.hasNextLine()) {
+            String Line = scannerFile.nextLine();
+            scannerLine = new Scanner(Line);
+            String pseaudo = scannerLine.next();
+            String ville = scannerLine.next();
+            membresVilles.put(pseaudo, ville);
+            scannerLine.close();
+        }
+
+        return membresVilles;
+    }
+    public static Map lectureVendeurVersAcheteur (String scenario) throws IOException {
+
+        Map<String, String> transaction = new HashMap<>();
+        File file = new File("ressources" + File.separator + scenario);
+        Scanner scannerFile = new Scanner(file);
+        Scanner scannerLine;
+
+        while(scannerFile.hasNextLine()) {
+            String Line = scannerFile.nextLine();
+            scannerLine = new Scanner(Line);
+            String vendeur = scannerLine.next();
+            String acheteur = scannerLine.next();
+            transaction.put(vendeur,acheteur);
+            scannerLine.close();
+        }
+
+        return transaction;
+    }
+
 
     public static ArrayList lectureScenarioMembre () throws IOException {
 
