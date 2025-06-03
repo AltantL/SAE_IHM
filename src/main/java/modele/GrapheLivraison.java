@@ -50,8 +50,9 @@ public class GrapheLivraison {
         Map<String, String> dicoMembresVilles = LectureScenario.lectureVilleDesMembres();  // contient touts les couple vendeur -> acheteur
         Map<String, ArrayList<String>> graphe = new HashMap<>();
         ArrayList<String> villesContenantPlus = new ArrayList<>();
-        String membre = new String();
-        String membreMoins = new String();
+        ArrayList<String> membre = new ArrayList<>();
+        String villeDuMembreAvecMoins = new String();
+        ArrayList<String> villeDuMembreAvecMoinsAjout = new ArrayList<>();
 
 
         for (String villeAvecPlus : villeVendeurPlus.keySet()) {
@@ -60,8 +61,14 @@ public class GrapheLivraison {
         }
         graphe.put("Velizy+", (ArrayList<String>) villesContenantPlus);
         for (String villePlusDuGraphe : graphe.get("Velizy+")) {
-            membre = String.valueOf(villeVendeurPlus.get(villePlusDuGraphe)); // on recupère les membres pour chaque villes +
-            membreMoins = dicoMembresVilles.get(membre) + "-";
+            membre = villeVendeurPlus.get(villePlusDuGraphe); // on recupère les membres pour chaque villes +
+            for (String membreParcours : membre) {
+                villeDuMembreAvecMoins = dicoMembresVilles.get(membre) + "-";
+                villeDuMembreAvecMoinsAjout.add(villeDuMembreAvecMoins);
+                graphe.put(villePlusDuGraphe,villeDuMembreAvecMoinsAjout);
+            }
+
+
 
 
         }
@@ -69,5 +76,6 @@ public class GrapheLivraison {
         System.out.println(graphe);
         System.out.println(villeAcheteurMoins);
         System.out.println(villeVendeurPlus);
+
     }
 }
