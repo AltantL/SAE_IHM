@@ -60,19 +60,24 @@ public class GrapheLivraison {
 
         for (String villePlusDuGraphe : graphe.get("Velizy+")) {
             ArrayList<String> membresAjouts = new ArrayList<>();
+            ArrayList<String> membresQuiAchete = new ArrayList<>();
             ArrayList<String> villeDesMembresQuiAchete = new ArrayList<>();
+
             List<String> membre = villeVendeurPlus.get(villePlusDuGraphe);// on recupère les membres pour chaque villes +
 
             for (String membreParcours : membre) {
                 membresAjouts.add(membreParcours);
             }
             for (String vendeursDesVillesPlus : membresAjouts){
-                System.out.println(dicoAcheteurVersVendeur);
-                System.out.println(dicoAcheteurVersVendeur.get("Leuphorie"));
-                System.out.println(dicoAcheteurVersVendeur.get(vendeursDesVillesPlus));
-                villeDesMembresQuiAchete.add(dicoAcheteurVersVendeur.get(vendeursDesVillesPlus)+"-");// on regarde pour chauqe vendeur à qui ils vendent
+                //System.out.println(dicoAcheteurVersVendeur.get(vendeursDesVillesPlus));
+                membresQuiAchete.add(dicoAcheteurVersVendeur.get(vendeursDesVillesPlus));// on regarde pour chauqe vendeur à qui ils vendent
+            }
+            for (String parcoursMembresQuiAchete : membresQuiAchete) {
+                System.out.println(dicoMembresVilles.get(parcoursMembresQuiAchete) + "-");
+                villeDesMembresQuiAchete.add(dicoMembresVilles.get(parcoursMembresQuiAchete) + "-");
 
             }
+
             graphe.put(villePlusDuGraphe,villeDesMembresQuiAchete);
         }
 
