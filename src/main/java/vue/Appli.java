@@ -16,7 +16,7 @@ public class Appli extends Application {
         stage.setTitle("APPLI");
         HBoxRoot root = new HBoxRoot();
         Accueil accueil = new Accueil();
-        GridPaneCreationScenario grid = new GridPaneCreationScenario();
+        VBoxCreationScenario grid = new VBoxCreationScenario();
 
         ScrollPane scrollPane = new ScrollPane();
         scrollPane.setContent(grid);
