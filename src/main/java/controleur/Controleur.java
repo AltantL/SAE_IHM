@@ -3,7 +3,7 @@ package controleur;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.control.*;
-import vue.GridPaneSelectionAlgo;
+import vue.VBoxSelectionAlgo;
 import vue.HBoxRoot;
 import vue.Resultat;
 
@@ -17,13 +17,13 @@ public class Controleur implements EventHandler{
 
     @Override
     public void handle(Event event) {
-        GridPaneSelectionAlgo selectionAlgo = HBoxRoot.getGridPaneSelectionAlgo();
+        VBoxSelectionAlgo selectionAlgo = HBoxRoot.getGridPaneSelectionAlgo();
         Resultat resultat = HBoxRoot.getResultat();
 
         //la source de event est le bouton "Enregistrer" du formulaire de selection
         if (event.getSource() instanceof Button){
 
-            ComboBox numScenario = selectionAlgo.comboScenarios;
+            ComboBox numScenario = selectionAlgo.getComboScenarios();
 
             int Senario = numScenario.getSelectionModel().getSelectedIndex();
 
