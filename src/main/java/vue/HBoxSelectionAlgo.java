@@ -1,6 +1,5 @@
 package vue;
 
-import constantes.ConstanteIHM;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
@@ -8,37 +7,44 @@ import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
-public class HBoxSelectionAlgo extends HBox implements ConstanteIHM {
+public class HBoxSelectionAlgo extends HBox {
 
     private static ComboBox comboScenarios;
+    private static ComboBox comboAlgo;
+
+    private static File repertoire = new File("scenarios");
+    private static File[] Scenarios = repertoire.listFiles();
+
+    private Resultat resultat = new Resultat();
 
     public HBoxSelectionAlgo(List<Node> children) {
-
-        Resultat resultat = new Resultat();
 
         GridPane grid = new GridPane();
 
         Label labelTitre = new Label("SAE JAVA IHM");
 
-        ToggleGroup radioGroup = new ToggleGroup();
+        ArrayList arrayListAlgo = new ArrayList();
+        arrayListAlgo.add("triTopologique");
+        arrayListAlgo.add("heuristique");
+        arrayListAlgo.add("triAStar");
 
-        RadioButton radioButton1 = new RadioButton("Algo 1");
-        RadioButton radioButton2 = new RadioButton("Algo 2");
-        RadioButton radioButton3 = new RadioButton("Algo 3");
+        comboAlgo = peupleComboBox(arrayListAlgo);
 
-        radioButton1.setSelected(true);
-
-        radioGroup.getToggles().addAll(radioButton1, radioButton2, radioButton3);
-
-        comboScenarios = peupleComboBox(SCENARIOS);
+        comboScenarios = peupleComboBox(getListeScenarios());
 
         Button bouttonAnnuler = new Button("Annuler");
+        //bouttonAnnuler.setOnAction(e -> {Resultat.nettoiage();});
 
         Button bouttonValider = new Button("Valider");
-        bouttonValider.setOnAction(actionEvent -> onBoutonValider(resultat));
+        bouttonValider.setOnAction(actionEvent -> {
+            //Resultat.nettoiage();
+            onBoutonValider(resultat);
+        });
 
         Button bouttonRetour = new Button("Retour");
         bouttonRetour.setOnAction(actionEvent -> children.removeLast());
@@ -46,14 +52,12 @@ public class HBoxSelectionAlgo extends HBox implements ConstanteIHM {
 
         grid.add(labelTitre, 0, 0);
 
-        grid.add(radioButton1, 0, 1);
-        grid.add(radioButton2, 0, 2);
-        grid.add(radioButton3, 0, 3);
+        grid.add(comboAlgo, 0, 1);
 
         grid.add(comboScenarios, 1, 1);
 
-        grid.add(bouttonAnnuler, 0, 5);
-        grid.add(bouttonValider, 1, 5);
+        grid.add(bouttonAnnuler, 1, 5);
+        grid.add(bouttonValider, 0, 5);
         grid.add(bouttonRetour, 0, 6);
 
         grid.add(resultat, 5, 0);
@@ -61,8 +65,8 @@ public class HBoxSelectionAlgo extends HBox implements ConstanteIHM {
         bouttonAnnuler.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                radioButton1.setSelected(true);
-                comboScenarios.setValue(SCENARIOS[0]);
+                comboAlgo.setValue("triTopologique");
+                comboScenarios.setValue(getListeScenarios().get(0));
             }
         });
 
@@ -73,7 +77,7 @@ public class HBoxSelectionAlgo extends HBox implements ConstanteIHM {
 
         ComboBox numScenario = comboScenarios;
         int senario = numScenario.getSelectionModel().getSelectedIndex();
-        String testSenario = SCENARIOS[senario];
+        String testSenario = getListeScenarios().get(senario);
 
         try {
             resultat.affichageResultat(testSenario);
@@ -83,14 +87,29 @@ public class HBoxSelectionAlgo extends HBox implements ConstanteIHM {
 
     }
 
-    private ComboBox<String> peupleComboBox(String[] strings) {
+    private ComboBox<String> peupleComboBox(ArrayList achven) {
+
         ComboBox<String> comboBox = new ComboBox<>();
-        for(String string : strings) {
+
+        for (int i = 0; i < achven.size(); i++) {
+            String string = achven.get(i).toString();
             comboBox.getItems().add(string);
         }
-        comboBox.setValue(strings[0]);
+        comboBox.setValue(achven.get(0).toString());
         return comboBox;
     }
+
+    public static ArrayList<String> getListeScenarios() {
+
+        ArrayList<String> liste = new ArrayList<>();
+        for (File file : Scenarios) {
+            liste.add(file.getName().toString());
+        }
+        Scenarios = repertoire.listFiles();
+        return liste;
+    }
+
+    public static String getComboAlgo(){return comboAlgo.getSelectionModel().getSelectedItem().toString();}
 
     public static ComboBox getComboScenarios() {
         return comboScenarios;
