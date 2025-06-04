@@ -14,8 +14,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static constantes.ConstanteIHM.SCENARIOS;
-
 public class VBoxModifierScenario extends VBox {
 
     private static ComboBox<String> comboCreationScenarios1;
