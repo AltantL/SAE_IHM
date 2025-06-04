@@ -13,7 +13,7 @@ Papilusion Clermond_Fd
 Aspicot Amiens
 Coconfort Cherbourg
 Dardargnan Nantes
-Roucool Saint-Etienne
+Roucool Saint_Etienne
 Roucoups Nice
 Roucarnage Vichy
 Rattata Montpellier
@@ -65,7 +65,7 @@ Alakazam Strasbourg
 Machoc Grenoble
 Machopeur Rouen
 Mackogneur Marseille
-Chétiflor Saint-Etienne
+Chétiflor Saint_Etienne
 Boustiflor Lille
 Empiflor Cherbourg
 Tentacool Nancy
@@ -74,7 +74,7 @@ Racaillou Calais
 Gravalanch Rennes
 Grolem Dijon
 Ponyta Lille
-Galopa Saint-Etienne
+Galopa Saint_Etienne
 Ramoloss Grenoble
 Flagadoss Angers
 Magnéti Calais
@@ -176,7 +176,7 @@ Togetic Nice
 Natu Nancy
 Xatu Angers
 Wattouat Reims
-Lainergie Saint-Etienne
+Lainergie Saint_Etienne
 Pharamp Rouen
 Joliflor Le_Havre
 Marill Marseille
@@ -198,7 +198,7 @@ Cornèbre Perpignan
 Roigada Bordeaux
 Feuforêve Strasbourg
 Zarbi Cherbourg
-Qulbutoké Saint-Etienne
+Qulbutoké Saint_Etienne
 Girafarig Nancy
 Pomdepik Strasbourg
 Foretress Dijon
@@ -206,7 +206,7 @@ Insolourdo Calais
 Scorplane Clermond_Fd
 Steelix Angers
 Snubbull Vichy
-Granbull Saint-Etienne
+Granbull Saint_Etienne
 Qwilfish Perpignan
 Cizayox Amiens
 Caratroc Brest
@@ -219,8 +219,8 @@ Volcaropod Nantes
 Marcacrin Nantes
 Cochignon Nancy
 Corayon Vichy
-Rémoraid Saint-Etienne
-Octillery Saint-Etienne
+Rémoraid Saint_Etienne
+Octillery Saint_Etienne
 Cadoizo Nice
 Démanta Grenoble
 Airmure Dijon
@@ -259,16 +259,16 @@ Laggron Bordeaux
 Medhyèna Bordeaux
 Grahyèna Biarritz
 Zigzaton Bordeaux
-Linéon Saint-Etienne
+Linéon Saint_Etienne
 Chenipotte Dijon
 Armulys Vichy
 Charmillon Angers
-Blindalys Saint-Etienne
+Blindalys Saint_Etienne
 Papinox Nancy
 Nénupiot Biarritz
 Lombre Nice
 Ludicolo Calais
-Grainipiot Saint-Etienne
+Grainipiot Saint_Etienne
 Pifeuil Amiens
 Tengalice Rouen
 Nirondelle Reims
@@ -277,7 +277,7 @@ Goélise Brest
 Bekipan Strasbourg
 Tarsal Dijon
 Kirlia Cherbourg
-Gardevoir Saint-Etienne
+Gardevoir Saint_Etienne
 Arakdo Cherbourg
 Maskadra Calais
 Balignon Brest
