@@ -51,4 +51,13 @@ class LectureScenarioTest {
         // Marseille -> Lyon = 350, Lyon -> Paris = 400
         assertEquals(750, resultat);
     }
+
+
+
+    @Test
+    void testGetDistanceSymétrique() {
+        // Vérifie que la distance Lyon -> Paris est bien 400 (si présente dans la map)
+        int distance = LectureScenario.getDistance(distances, "Lyon", "Paris");
+        assertEquals(400, distance);
+    }
 }
