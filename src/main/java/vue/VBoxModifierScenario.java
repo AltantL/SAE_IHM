@@ -33,7 +33,7 @@ public class VBoxModifierScenario extends VBox {
 
         Label labelTitle = new Label("Modification de scenarios");
 
-        comboScenarios = peupleComboBox(SCENARIOS);
+        comboScenarios = peupleComboBox(HBoxSelectionAlgo.getListeScenarios());
 
 
         buttonValider = new Button("Valider");
@@ -109,8 +109,6 @@ public class VBoxModifierScenario extends VBox {
 
     private void poseDeScenario(String scenrio) throws IOException {
 
-        scenrio = scenrio+".txt";
-
         ArrayList pose = LectureScenario.lectureScenario(scenrio);
 
         ArrayList pose1 = (ArrayList) pose.get(0);
@@ -151,19 +149,10 @@ public class VBoxModifierScenario extends VBox {
             scenario += chose + " -> " + chose2 + "\n";
 
         }
-        FileOutputStream fos = new FileOutputStream("./scenarios" + File.separator + scenario1 + ".txt");
+        FileOutputStream fos = new FileOutputStream("./scenarios" + File.separator + scenario1);
         fos.write(scenario.getBytes());
         fos.flush();
         fos.close();
-    }
-
-    private ComboBox<String> peupleComboBox(String[] strings) {
-        ComboBox<String> comboBox = new ComboBox<>();
-        for(String string : strings) {
-            comboBox.getItems().add(string);
-        }
-        comboBox.setValue(strings[0]);
-        return comboBox;
     }
 
     private ComboBox<String> peupleComboBox(ArrayList achven) {
